@@ -60,6 +60,10 @@ public class MySqlWebMoneyRurDAO implements WebMoneyRurDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            ConnectionUtil.close(con,ps);
+        }
+
         return webMoney;
     }
 

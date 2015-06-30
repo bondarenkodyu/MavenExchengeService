@@ -5,4 +5,17 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
+    <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>com.bondarenko.es.servlets.user.CreateUser</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/CreateUser</url-pattern>
+    </servlet-mapping>
+
+
+
+
 </web-app>

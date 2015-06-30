@@ -61,6 +61,9 @@ public class MySqlWebMoneyUsdDAO implements WebMoneyUsdDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            ConnectionUtil.close(con,ps);
+        }
         return webMoney;
     }
 

@@ -60,6 +60,9 @@ public class MySqlYandexMoneyDAO implements YandexMoneyDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            ConnectionUtil.close(con,ps);
+        }
         return yandexMoney;
     }
 
