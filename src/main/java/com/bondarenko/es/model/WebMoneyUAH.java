@@ -11,6 +11,9 @@ public class WebMoneyUAH {
     private long userId;
     private long id;
 
+    public WebMoneyUAH() {
+    }
+
     public long getId() {
         return id;
     }

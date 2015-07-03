@@ -11,6 +11,9 @@ public class Bitcoin {
     private  long userId;
     private BigDecimal amount;
 
+    public Bitcoin() {
+    }
+
     public long getId() {
         return id;
     }

@@ -12,6 +12,9 @@ public class WebMoneyEUR {
     private long userId;
     private long id;
 
+    public WebMoneyEUR() {
+    }
+
     public long getId() {
         return id;
     }

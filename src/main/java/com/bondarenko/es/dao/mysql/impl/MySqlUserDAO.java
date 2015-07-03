@@ -58,7 +58,7 @@ public class MySqlUserDAO implements UserDAO {
             String middleName = rs.getString("middle_name");
             String lastName = rs.getString("last_name");
             Date birthday = rs.getDate("birthday");
-            Date registrationDate = rs.getDate("registration_date");
+            Timestamp registrationDate = rs.getTimestamp("registration_date");
             String sex = rs.getString("sex");
             user = User.buildUser(id, firstName, middleName, lastName, birthday, registrationDate, sex);
 

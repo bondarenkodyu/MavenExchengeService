@@ -1,6 +1,7 @@
 package com.bondarenko.es.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Lil Wayne on 17.06.15.
@@ -12,10 +13,11 @@ public class User {
     private  String middleName;
     private  String lastName;
     private Date birthday;
-    private Date registrationDate;
+    private Timestamp registrationDate;
     private String sex;
 
-
+    public User() {
+    }
 
     public long getId() {
         return id;
@@ -57,11 +59,11 @@ public class User {
         this.birthday = birthday;
     }
 
-    public Date getRegistrationDate() {
+    public Timestamp getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(Timestamp registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -86,7 +88,7 @@ public class User {
                 '}';
     }
 
-    public static User buildUser(long id, String firstName, String middleName, String lastName, Date birthday, Date registrationDate, String sex)
+    public static User buildUser(long id, String firstName, String middleName, String lastName, Date birthday, Timestamp registrationDate, String sex)
     {
         User user = new User();
         user.setId(id);

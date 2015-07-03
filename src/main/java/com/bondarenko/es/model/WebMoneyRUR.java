@@ -11,6 +11,9 @@ public class WebMoneyRUR {
     private long userId;
     private long id;
 
+    public WebMoneyRUR() {
+    }
+
     public long getId() {
         return id;
     }

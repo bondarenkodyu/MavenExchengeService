@@ -16,7 +16,7 @@ public class Demo {
     {
         DAOFactory daoFactory = new MySqlDAOFactory();
         MySqlUserDAO userDAO = (MySqlUserDAO) daoFactory.getUserDAO();
-        User user = User.buildUser(1, "Vasyl" , "Petrovich", "Schetkov", new Date(122483489L), new Date(36264326L), "M");
+//        User user = User.buildUser(1, "Vasyl" , "Petrovich", "Schetkov", new Date(122483489L), new Date(36264326L), "M");
         System.out.println(userDAO.read(1));
 
 //        MySqlWebMoneyEurDAO eurDAO = (MySqlWebMoneyEurDAO) daoFactory.getWebMoneyEurDAO();

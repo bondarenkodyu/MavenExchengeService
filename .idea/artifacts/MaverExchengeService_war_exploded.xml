@@ -10,6 +10,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-5.1.35-bin" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/java/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" />
         </element>
       </element>
     </root>

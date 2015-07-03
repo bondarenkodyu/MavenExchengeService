@@ -11,6 +11,9 @@ public class WebMoneyUSD {
     private long userId;
     private BigDecimal amount;
 
+    public WebMoneyUSD() {
+    }
+
     public long getId() {
         return id;
     }

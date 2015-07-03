@@ -13,6 +13,8 @@ public class YandexMoney {
     private  long userId;
     private BigDecimal amount;
 
+    public YandexMoney() {
+    }
 
     public long getId() {
         return id;
