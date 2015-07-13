@@ -31,7 +31,7 @@ public class MySqlWebMoneyUsdDAO implements WebMoneyUsdDAO {
             int k = 1;
             ps.setLong(k++, webMoney.getUserId());
             ps.setBigDecimal(k++, webMoney.getAmount());
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

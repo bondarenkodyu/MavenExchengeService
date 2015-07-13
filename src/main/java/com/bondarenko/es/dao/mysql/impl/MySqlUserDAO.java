@@ -10,9 +10,10 @@ import java.sql.*;
  * Created by Lil Wayne on 22.06.15.
  */
 public class MySqlUserDAO implements UserDAO {
-    private static final String CREATE_USER = "INSERT INTO user (first_name, middle_name, last_name, birthday, sex) VALUES (?, ?, ?, ?, ?) ";
+    private static final String CREATE_USER = "INSERT INTO user (first_name, middle_name, last_name, birthday, sex) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
     private static final String READ_USER = "SELECT * FROM user WHERE id = ? ";
-    private static final String UPDATE_USER = "UPDATE user SET first_name = ?, middle_name = ?, last_name = ?, birthday = ?, sex = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE user SET first_name = ?, middle_name = ?, last_name = ?, birthday = ?, sex = ?, is_bitcoin = ?, is_yandex_money = ?, is_webmoney_eur = ?," +
+            "is_webmoney_usd = ?, is_webmoney_uah = ?, is_webmoney_rur = ? WHERE id = ?";
     private static final String DELETE_USER = "DELETE FROM user WHERE id = ?";
     @Override
     public void create(User user) {
@@ -28,6 +29,13 @@ public class MySqlUserDAO implements UserDAO {
             ps.setString(k++, user.getLastName());
             ps.setDate(k++, user.getBirthday());
             ps.setString(k++, user.getSex());
+            ps.setInt(k++, user.getIsBitcoin());
+            ps.setInt(k++, user.getIsYandexMoney());
+            ps.setInt(k++, user.getIsWebMoneyEUR());
+            ps.setInt(k++, user.getIsWebMoneyUSD());
+            ps.setInt(k++, user.getIsWebMoneyUAH());
+            ps.setInt(k++, user.getIsWebMoneyRUR());
+
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +68,14 @@ public class MySqlUserDAO implements UserDAO {
             Date birthday = rs.getDate("birthday");
             Timestamp registrationDate = rs.getTimestamp("registration_date");
             String sex = rs.getString("sex");
-            user = User.buildUser(id, firstName, middleName, lastName, birthday, registrationDate, sex);
+            int isBitcoin = rs.getInt("is_bitcoin");
+            int isYandexMoney = rs.getInt("is_yandex_money");
+            int isWebMoneyEUR = rs.getInt("is_webmoney_eur");
+            int isWebMoneyUSD = rs.getInt("is_webmoney_usd");
+            int isWebMoneyUAH = rs.getInt("is_webmoney_uah");
+            int isWebMoneyRUR = rs.getInt("is_webmoney_rur");
+            user = User.buildUser(id, firstName, middleName, lastName, birthday, registrationDate, sex,
+                    isBitcoin, isYandexMoney, isWebMoneyEUR, isWebMoneyUSD, isWebMoneyUAH, isWebMoneyRUR);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,6 +102,12 @@ public class MySqlUserDAO implements UserDAO {
             ps.setString(k++, user.getLastName());
             ps.setDate(k++, user.getBirthday());
             ps.setString(k++, user.getSex());
+            ps.setInt(k++, user.getIsBitcoin());
+            ps.setInt(k++, user.getIsYandexMoney());
+            ps.setInt(k++, user.getIsWebMoneyEUR());
+            ps.setInt(k++, user.getIsWebMoneyUSD());
+            ps.setInt(k++, user.getIsWebMoneyUAH());
+            ps.setInt(k++, user.getIsWebMoneyRUR());
             ps.setLong(k++, user.getId());
             a = ps.executeUpdate();
         } catch (SQLException e) {

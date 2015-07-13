@@ -10,6 +10,11 @@ public class WebMoneyRUR {
     private BigDecimal amount;
     private long userId;
     private long id;
+    private final String name = "WebMoneyRUR";
+
+    public String getName() {
+        return name;
+    }
 
     public WebMoneyRUR() {
     }

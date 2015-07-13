@@ -12,6 +12,11 @@ public class YandexMoney {
     private  long id;
     private  long userId;
     private BigDecimal amount;
+    private final String name = "Yandex Money";
+
+    public String getName() {
+        return name;
+    }
 
     public YandexMoney() {
     }

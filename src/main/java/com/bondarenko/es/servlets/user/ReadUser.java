@@ -25,17 +25,11 @@ public class ReadUser extends HttpServlet {
         UserServ userServ = new UserServ();
         User user = userServ.read(id);
         request.setAttribute("user", user);
-        request.getRequestDispatcher("readUser.jsp").forward(request, response);
-
-
-
-
-
-
+        request.getRequestDispatcher("user/readUser.jsp").forward(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 }

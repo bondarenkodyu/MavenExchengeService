@@ -12,7 +12,7 @@
     <title>Not successful</title>
 </head>
 <body>
-<p><c:out value="${user.firstName}"></c:out> <c:out value="${user.middleName}"></c:out> <c:out value="${user.lastName}"></c:out> was not delete
+<p> <br>Not successful</br>
 </p>
 </body>
 </html>

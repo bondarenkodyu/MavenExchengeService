@@ -10,6 +10,9 @@ public class WebMoneyUSD {
     private long id;
     private long userId;
     private BigDecimal amount;
+    private final String name = "WebMoneyUSD";
+
+
 
     public WebMoneyUSD() {
     }
@@ -36,6 +39,10 @@ public class WebMoneyUSD {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
     }
 
 

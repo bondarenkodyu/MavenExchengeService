@@ -15,6 +15,12 @@ public class User {
     private Date birthday;
     private Timestamp registrationDate;
     private String sex;
+    private int isBitcoin;
+    private int isYandexMoney;
+    private int isWebMoneyRUR;
+    private int isWebMoneyUSD;
+    private int isWebMoneyEUR;
+    private int isWebMoneyUAH;
 
     public User() {
     }
@@ -75,6 +81,54 @@ public class User {
         this.sex = sex;
     }
 
+    public int getIsBitcoin() {
+        return isBitcoin;
+    }
+
+    public void setIsBitcoin(int isBitcoin) {
+        this.isBitcoin = isBitcoin;
+    }
+
+    public int getIsYandexMoney() {
+        return isYandexMoney;
+    }
+
+    public void setIsYandexMoney(int isYandexMoney) {
+        this.isYandexMoney = isYandexMoney;
+    }
+
+    public int getIsWebMoneyRUR() {
+        return isWebMoneyRUR;
+    }
+
+    public void setIsWebMoneyRUR(int isWebMoneyRUR) {
+        this.isWebMoneyRUR = isWebMoneyRUR;
+    }
+
+    public int getIsWebMoneyUSD() {
+        return isWebMoneyUSD;
+    }
+
+    public void setIsWebMoneyUSD(int isWebMoneyUSD) {
+        this.isWebMoneyUSD = isWebMoneyUSD;
+    }
+
+    public int getIsWebMoneyEUR() {
+        return isWebMoneyEUR;
+    }
+
+    public void setIsWebMoneyEUR(int isWebMoneyEUR) {
+        this.isWebMoneyEUR = isWebMoneyEUR;
+    }
+
+    public int getIsWebMoneyUAH() {
+        return isWebMoneyUAH;
+    }
+
+    public void setIsWebMoneyUAH(int isWebMoneyUAH) {
+        this.isWebMoneyUAH = isWebMoneyUAH;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,7 +142,9 @@ public class User {
                 '}';
     }
 
-    public static User buildUser(long id, String firstName, String middleName, String lastName, Date birthday, Timestamp registrationDate, String sex)
+    public static User buildUser(long id, String firstName, String middleName, String lastName, Date birthday, Timestamp registrationDate, String sex,
+                                 int isBitcoin, int isYandexMoney, int isWebMoneyEUR, int isWebMoneyUSD,
+                                 int isWebMoneyUAH, int isWebMoneyRUR)
     {
         User user = new User();
         user.setId(id);
@@ -98,6 +154,12 @@ public class User {
         user.setBirthday(birthday);
         user.setRegistrationDate(registrationDate);
         user.setSex(sex);
+        user.setIsBitcoin(isBitcoin);
+        user.setIsYandexMoney(isYandexMoney);
+        user.setIsWebMoneyEUR(isWebMoneyEUR);
+        user.setIsWebMoneyUSD(isWebMoneyUSD);
+        user.setIsWebMoneyUAH(isWebMoneyUAH);
+        user.setIsWebMoneyRUR(isWebMoneyRUR);
         return  user;
     }
 }

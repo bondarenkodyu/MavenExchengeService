@@ -10,6 +10,11 @@ public class WebMoneyUAH {
     private BigDecimal amount;
     private long userId;
     private long id;
+    private final String name = "WebMoneyUAH";
+
+    public String getName() {
+        return name;
+    }
 
     public WebMoneyUAH() {
     }

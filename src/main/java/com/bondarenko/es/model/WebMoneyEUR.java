@@ -11,6 +11,11 @@ public class WebMoneyEUR {
     private BigDecimal amount;
     private long userId;
     private long id;
+    private final String name = "WebMoneyEUR";
+
+    public String getName() {
+        return name;
+    }
 
     public WebMoneyEUR() {
     }

@@ -12,8 +12,8 @@
     <title></title>
   </head>
   <body>
- Hello world!
-  <form name="input" action="Servlet" method="post">
+
+  <form name="input" action="/ReadUser" method="post">
     Введите ваше id <input type="text" name="id"/>
     <input type="submit" value="Submit"/>
 

@@ -32,7 +32,7 @@ public class MySqlBitcoinDAO implements BitcoinDAO {
             ps.setLong(k++, bitcoin.getUserId());
             ps.setBigDecimal(k++, bitcoin.getAmount());
 
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

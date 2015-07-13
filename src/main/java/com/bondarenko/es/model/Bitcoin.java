@@ -10,6 +10,9 @@ public class Bitcoin {
     private long id;
     private  long userId;
     private BigDecimal amount;
+    private final String name = "Bitcoin";
+
+   
 
     public Bitcoin() {
     }
@@ -36,6 +39,10 @@ public class Bitcoin {
 
     public void setUserId(long user_id) {
         this.userId = user_id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static Bitcoin buildBitcoin(long id, long userId, BigDecimal B)

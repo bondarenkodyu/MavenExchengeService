@@ -6,8 +6,5 @@
 </head>
 <body>
 <br><br>Successful</br></h1>
-<p><c:out value="${user.firstName}"></c:out> <c:out value="${user.middleName}"></c:out> <c:out value="${user.lastName}"></c:out> was delete
-</p>
-
 </body>
 </html>

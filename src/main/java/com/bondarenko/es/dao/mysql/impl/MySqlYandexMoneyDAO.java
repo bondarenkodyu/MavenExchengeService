@@ -30,7 +30,7 @@ public class MySqlYandexMoneyDAO implements YandexMoneyDAO {
             int k = 1;
             ps.setLong(k++, yandexMoney.getUserId());
             ps.setBigDecimal(k++, yandexMoney.getAmount());
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
