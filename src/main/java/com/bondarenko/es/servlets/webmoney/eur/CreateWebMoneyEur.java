@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 /**
  * Created by Lil Wayne on 13.07.2015.
  */
-@WebServlet(name = "CreateWebMoneyEUR", urlPatterns = "/CreateWebMoneyEUR")
+@WebServlet(name = "CreateWebMoneyEur", urlPatterns = "/CreateWebMoneyEUR")
 public class CreateWebMoneyEur extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
