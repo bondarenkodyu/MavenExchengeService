@@ -31,6 +31,7 @@ public class CreateWebMoneyEur extends HttpServlet {
             user.setIsWebMoneyEUR(1);
             userServ.update(user);
             request.getRequestDispatcher("successful.jsp").forward(request, response);
+
         }catch (Exception e){
             request.getRequestDispatcher("notSuccessful.jsp").forward(request, response);
         }
