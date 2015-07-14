@@ -31,9 +31,6 @@ public class CreateUser extends HttpServlet {
         user.setSex(sex);
         UserServ userServ = new UserServ();
         userServ.create(user);
-
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
