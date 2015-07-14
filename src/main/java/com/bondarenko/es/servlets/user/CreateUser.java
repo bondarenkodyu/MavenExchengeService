@@ -18,6 +18,7 @@ import java.sql.Date;
 public class CreateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         String firstName = request.getParameter("first");
         String middleName = request.getParameter("middle");
         String lastName = request.getParameter("last");
