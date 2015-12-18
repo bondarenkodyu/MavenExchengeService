@@ -1,0 +1,11 @@
+-- Create the user 
+create user CLIENT INDENIFIED by Qwerty+1
+
+grant connect to CLIENT;
+grant resource to CLIENT;
+-- Grant/Revoke system privileges 
+grant create session to CLIENT;
+--grant execute any procedure to CLIENT;
+grant insert, update, delete on BONDARENKO_DYU.CLIENT to CLIENT;
+grant insert, update, delete on BONDARENKO_DYU.ACCOUNT to CLIENT;
+grant insert, update, delete on BONDARENKO_DYU.PAYMENT to CLIENT;
