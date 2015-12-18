@@ -1,0 +1,308 @@
+/*
+CREATE TABLE  client
+(
+    id NUMBER(8),
+    first_name VARCHAR(30) NOT NULL,
+    middle_name VARCHAR(40) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birthday DATE,
+    registration_date TIMESTAMP,
+    sex VARCHAR(1)
+);
+
+alter table client
+  add constraint client_pk primary key (id);
+  
+CREATE TABLE  account (
+    id NUMBER(8),
+    client_id NUMBER(8) NOT NULL,
+    amount NUMBER(8)  NOT NULL
+     );
+    
+alter table account
+  add constraint account_pk primary key (id);  
+  
+  alter table account
+  add constraint account_client_id_fk
+  FOREIGN KEY (client_id) REFERENCES client(id);
+  
+CREATE TABLE  payment (
+    id NUMBER(8),    
+    account_from_id  NUMBER(8),
+    account_to_id  NUMBER(8),
+    summa  NUMBER(8)   NOT NULL,
+    rec VARCHAR(100)  NOT NULL,
+    tr_date TIMESTAMP  NOT NULL    
+);
+alter table payment
+  add constraint payment_pk primary key (id);
+  
+ alter table payment
+  add constraint payment_account_from_id_fk
+ FOREIGN KEY (account_from_id)  REFERENCES account(id);  
+  
+   alter table payment
+  add constraint payment_account_to_id_fk 
+  FOREIGN KEY (account_to_id) REFERENCES account(id);*/
+  
+ -------------------------------------------------------------------------------------------------------------------- 
+create or replace trigger before_summa_payment_insert before insert
+  on payment
+  for each row
+declare
+acount_am NUMBER(8);
+
+begin
+
+select t.amount into acount_am from   account t where t.id = :new.account_from_id;
+
+ if :new.summa < 0  then
+    raise_application_error(-20900, 'Сумма перевода не может быть отрицательной!');
+    end if;
+
+ if acount_am < :new.summa  then
+    raise_application_error(-20900, 'Сумма перевода больше суммы на счете!');
+    end if;
+
+end before_summa_payment_insert;
+
+
+
+/*create or replace trigger after_summa_payment_insert after insert
+  on payment
+  for each row
+declare 
+begin
+  update account set amount = amount - :new.summa where id = :new.account_from_id;
+  update account set amount = amount + :new.summa where id = :new.account_to_id;  
+
+end after_summa_payment_insert;*/
+
+-- Create the user 
+create user CLIENT INDENIFIED by Qwerty+1
+----------------------------------------------------------------------------------------------
+-- Create the user 
+create user BONDARENKO_DYU
+  default tablespace USERS
+  temporary tablespace TEMP
+  profile DEFAULT
+  quota 100m on bodt_dir_d
+  quota 100m on users;
+-- Grant/Revoke object privileges 
+grant execute on BO_DATA.PK_ETL_API to BONDARENKO_DYU;
+grant select, insert, update, delete, references, alter, index on BO_DATA.T_CDS_TABLE_DATE_LOG to BONDARENKO_DYU;
+-- Grant/Revoke role privileges 
+grant connect to BONDARENKO_DYU;
+grant dba to BONDARENKO_DYU;
+grant resource to BONDARENKO_DYU;
+-- Grant/Revoke system privileges 
+grant administer any sql tuning set to BONDARENKO_DYU;
+grant administer database trigger to BONDARENKO_DYU;
+begin
+  dbms_resource_manager_privs.grant_system_privilege(
+    grantee_name   => 'BONDARENKO_DYU',
+    privilege_name => 'administer_resource_manager',
+    admin_option   => false);
+end;
+/
+grant administer sql management object to BONDARENKO_DYU;
+grant administer sql tuning set to BONDARENKO_DYU;
+grant advisor to BONDARENKO_DYU;
+grant alter any assembly to BONDARENKO_DYU;
+grant alter any cluster to BONDARENKO_DYU;
+grant alter any cube to BONDARENKO_DYU;
+grant alter any cube dimension to BONDARENKO_DYU;
+grant alter any dimension to BONDARENKO_DYU;
+grant alter any edition to BONDARENKO_DYU;
+grant alter any evaluation context to BONDARENKO_DYU;
+grant alter any index to BONDARENKO_DYU;
+grant alter any indextype to BONDARENKO_DYU;
+grant alter any library to BONDARENKO_DYU;
+grant alter any materialized view to BONDARENKO_DYU;
+grant alter any mining model to BONDARENKO_DYU;
+grant alter any operator to BONDARENKO_DYU;
+grant alter any outline to BONDARENKO_DYU;
+grant alter any procedure to BONDARENKO_DYU;
+grant alter any role to BONDARENKO_DYU;
+grant alter any rule to BONDARENKO_DYU;
+grant alter any rule set to BONDARENKO_DYU;
+grant alter any sequence to BONDARENKO_DYU;
+grant alter any sql profile to BONDARENKO_DYU;
+grant alter any table to BONDARENKO_DYU;
+grant alter any trigger to BONDARENKO_DYU;
+grant alter any type to BONDARENKO_DYU;
+grant alter database to BONDARENKO_DYU;
+grant alter profile to BONDARENKO_DYU;
+grant alter resource cost to BONDARENKO_DYU;
+grant alter rollback segment to BONDARENKO_DYU;
+grant alter session to BONDARENKO_DYU;
+grant alter system to BONDARENKO_DYU;
+grant alter tablespace to BONDARENKO_DYU;
+grant alter user to BONDARENKO_DYU;
+grant analyze any to BONDARENKO_DYU;
+grant audit any to BONDARENKO_DYU;
+grant audit system to BONDARENKO_DYU;
+grant backup any table to BONDARENKO_DYU;
+grant become user to BONDARENKO_DYU;
+grant change notification to BONDARENKO_DYU;
+grant comment any mining model to BONDARENKO_DYU;
+grant comment any table to BONDARENKO_DYU;
+grant create any assembly to BONDARENKO_DYU;
+grant create any cluster to BONDARENKO_DYU;
+grant create any context to BONDARENKO_DYU;
+grant create any credential to BONDARENKO_DYU;
+grant create any cube to BONDARENKO_DYU;
+grant create any cube build process to BONDARENKO_DYU;
+grant create any cube dimension to BONDARENKO_DYU;
+grant create any dimension to BONDARENKO_DYU;
+grant create any directory to BONDARENKO_DYU;
+grant create any edition to BONDARENKO_DYU;
+grant create any evaluation context to BONDARENKO_DYU;
+grant create any index to BONDARENKO_DYU;
+grant create any indextype to BONDARENKO_DYU;
+grant create any job to BONDARENKO_DYU;
+grant create any library to BONDARENKO_DYU;
+grant create any materialized view to BONDARENKO_DYU;
+grant create any measure folder to BONDARENKO_DYU;
+grant create any mining model to BONDARENKO_DYU;
+grant create any operator to BONDARENKO_DYU;
+grant create any outline to BONDARENKO_DYU;
+grant create any procedure to BONDARENKO_DYU;
+grant create any rule to BONDARENKO_DYU;
+grant create any rule set to BONDARENKO_DYU;
+grant create any sequence to BONDARENKO_DYU;
+grant create any sql profile to BONDARENKO_DYU;
+grant create any synonym to BONDARENKO_DYU;
+grant create any table to BONDARENKO_DYU;
+grant create any trigger to BONDARENKO_DYU;
+grant create any type to BONDARENKO_DYU;
+grant create any view to BONDARENKO_DYU;
+grant create assembly to BONDARENKO_DYU;
+grant create cluster to BONDARENKO_DYU;
+grant create credential to BONDARENKO_DYU;
+grant create cube to BONDARENKO_DYU;
+grant create cube build process to BONDARENKO_DYU;
+grant create cube dimension to BONDARENKO_DYU;
+grant create database link to BONDARENKO_DYU;
+grant create dimension to BONDARENKO_DYU;
+grant create evaluation context to BONDARENKO_DYU;
+grant create external job to BONDARENKO_DYU;
+grant create indextype to BONDARENKO_DYU;
+grant create job to BONDARENKO_DYU;
+grant create library to BONDARENKO_DYU;
+grant create materialized view to BONDARENKO_DYU;
+grant create measure folder to BONDARENKO_DYU;
+grant create mining model to BONDARENKO_DYU;
+grant create operator to BONDARENKO_DYU;
+grant create procedure to BONDARENKO_DYU;
+grant create profile to BONDARENKO_DYU;
+grant create public database link to BONDARENKO_DYU;
+grant create public synonym to BONDARENKO_DYU;
+grant create role to BONDARENKO_DYU;
+grant create rollback segment to BONDARENKO_DYU;
+grant create rule to BONDARENKO_DYU;
+grant create rule set to BONDARENKO_DYU;
+grant create sequence to BONDARENKO_DYU;
+grant create session to BONDARENKO_DYU;
+grant create synonym to BONDARENKO_DYU;
+grant create table to BONDARENKO_DYU;
+grant create tablespace to BONDARENKO_DYU;
+grant create trigger to BONDARENKO_DYU;
+grant create type to BONDARENKO_DYU;
+grant create user to BONDARENKO_DYU;
+grant create view to BONDARENKO_DYU;
+grant debug any procedure to BONDARENKO_DYU;
+grant debug connect session to BONDARENKO_DYU;
+grant delete any cube dimension to BONDARENKO_DYU;
+grant delete any measure folder to BONDARENKO_DYU;
+grant delete any table to BONDARENKO_DYU;
+grant dequeue any queue to BONDARENKO_DYU;
+grant drop any assembly to BONDARENKO_DYU;
+grant drop any cluster to BONDARENKO_DYU;
+grant drop any context to BONDARENKO_DYU;
+grant drop any cube to BONDARENKO_DYU;
+grant drop any cube build process to BONDARENKO_DYU;
+grant drop any cube dimension to BONDARENKO_DYU;
+grant drop any dimension to BONDARENKO_DYU;
+grant drop any directory to BONDARENKO_DYU;
+grant drop any edition to BONDARENKO_DYU;
+grant drop any evaluation context to BONDARENKO_DYU;
+grant drop any index to BONDARENKO_DYU;
+grant drop any indextype to BONDARENKO_DYU;
+grant drop any library to BONDARENKO_DYU;
+grant drop any materialized view to BONDARENKO_DYU;
+grant drop any measure folder to BONDARENKO_DYU;
+grant drop any mining model to BONDARENKO_DYU;
+grant drop any operator to BONDARENKO_DYU;
+grant drop any outline to BONDARENKO_DYU;
+grant drop any procedure to BONDARENKO_DYU;
+grant drop any role to BONDARENKO_DYU;
+grant drop any rule to BONDARENKO_DYU;
+grant drop any rule set to BONDARENKO_DYU;
+grant drop any sequence to BONDARENKO_DYU;
+grant drop any sql profile to BONDARENKO_DYU;
+grant drop any synonym to BONDARENKO_DYU;
+grant drop any table to BONDARENKO_DYU;
+grant drop any trigger to BONDARENKO_DYU;
+grant drop any type to BONDARENKO_DYU;
+grant drop any view to BONDARENKO_DYU;
+grant drop profile to BONDARENKO_DYU;
+grant drop public database link to BONDARENKO_DYU;
+grant drop public synonym to BONDARENKO_DYU;
+grant drop rollback segment to BONDARENKO_DYU;
+grant drop tablespace to BONDARENKO_DYU;
+grant drop user to BONDARENKO_DYU;
+grant enqueue any queue to BONDARENKO_DYU;
+grant execute any assembly to BONDARENKO_DYU;
+grant execute any class to BONDARENKO_DYU;
+grant execute any evaluation context to BONDARENKO_DYU;
+grant execute any indextype to BONDARENKO_DYU;
+grant execute any library to BONDARENKO_DYU;
+grant execute any operator to BONDARENKO_DYU;
+grant execute any procedure to BONDARENKO_DYU;
+grant execute any program to BONDARENKO_DYU;
+grant execute any rule to BONDARENKO_DYU;
+grant execute any rule set to BONDARENKO_DYU;
+grant execute any type to BONDARENKO_DYU;
+grant execute assembly to BONDARENKO_DYU;
+grant export full database to BONDARENKO_DYU;
+grant flashback any table to BONDARENKO_DYU;
+grant flashback archive administer to BONDARENKO_DYU;
+grant force any transaction to BONDARENKO_DYU;
+grant force transaction to BONDARENKO_DYU;
+grant global query rewrite to BONDARENKO_DYU;
+grant grant any object privilege to BONDARENKO_DYU;
+grant grant any privilege to BONDARENKO_DYU;
+grant grant any role to BONDARENKO_DYU;
+grant import full database to BONDARENKO_DYU;
+grant insert any cube dimension to BONDARENKO_DYU;
+grant insert any measure folder to BONDARENKO_DYU;
+grant insert any table to BONDARENKO_DYU;
+grant lock any table to BONDARENKO_DYU;
+grant logmining to BONDARENKO_DYU;
+grant manage any file group to BONDARENKO_DYU;
+grant manage any queue to BONDARENKO_DYU;
+grant manage file group to BONDARENKO_DYU;
+grant manage scheduler to BONDARENKO_DYU;
+grant manage tablespace to BONDARENKO_DYU;
+grant merge any view to BONDARENKO_DYU;
+grant on commit refresh to BONDARENKO_DYU;
+grant query rewrite to BONDARENKO_DYU;
+grant read any file group to BONDARENKO_DYU;
+grant restricted session to BONDARENKO_DYU;
+grant resumable to BONDARENKO_DYU;
+grant select any cube to BONDARENKO_DYU;
+grant select any cube dimension to BONDARENKO_DYU;
+grant select any dictionary to BONDARENKO_DYU;
+grant select any mining model to BONDARENKO_DYU;
+grant select any sequence to BONDARENKO_DYU;
+grant select any table to BONDARENKO_DYU;
+grant select any transaction to BONDARENKO_DYU;
+grant under any table to BONDARENKO_DYU;
+grant under any type to BONDARENKO_DYU;
+grant under any view to BONDARENKO_DYU;
+grant unlimited tablespace to BONDARENKO_DYU;
+grant update any cube to BONDARENKO_DYU;
+grant update any cube build process to BONDARENKO_DYU;
+grant update any cube dimension to BONDARENKO_DYU;
+grant update any table to BONDARENKO_DYU;
