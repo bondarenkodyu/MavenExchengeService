@@ -1,0 +1,11 @@
+-- Add comments to the table 
+comment on table T_T
+  is 'Тел';
+-- Add comments to the columns 
+comment on column T_TEL_ALL_USR_GB.position_ua
+  is 'Посада на українській мові';
+  
+  create or replace view t_sar_ind_columns as
+select d.table_owner, d.table_name, d.index_name, d.column_position, d.column_name
+  from dba_ind_columns d
+order by d.table_owner, d.table_name, d.index_name, d.column_position;
