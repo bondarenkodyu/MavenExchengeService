@@ -1,0 +1,79 @@
+/*
+CREATE TABLE  client
+(
+    id NUMBER(8),
+    first_name VARCHAR(30) NOT NULL,
+    middle_name VARCHAR(40) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birthday DATE,
+    registration_date TIMESTAMP,
+    sex VARCHAR(1)
+);
+
+alter table client
+  add constraint client_pk primary key (id);
+  
+CREATE TABLE  account (
+    id NUMBER(8),
+    client_id NUMBER(8) NOT NULL,
+    amount NUMBER(8)  NOT NULL
+     );
+    
+alter table account
+  add constraint account_pk primary key (id);  
+  
+  alter table account
+  add constraint account_client_id_fk
+  FOREIGN KEY (client_id) REFERENCES client(id);
+  
+CREATE TABLE  payment (
+    id NUMBER(8),    
+    account_from_id  NUMBER(8),
+    account_to_id  NUMBER(8),
+    summa  NUMBER(8)   NOT NULL,
+    rec VARCHAR(100)  NOT NULL,
+    tr_date TIMESTAMP  NOT NULL    
+);
+alter table payment
+  add constraint payment_pk primary key (id);
+  
+ alter table payment
+  add constraint payment_account_from_id_fk
+ FOREIGN KEY (account_from_id)  REFERENCES account(id);  
+  
+   alter table payment
+  add constraint payment_account_to_id_fk 
+  FOREIGN KEY (account_to_id) REFERENCES account(id);*/
+  
+ -------------------------------------------------------------------------------------------------------------------- 
+create or replace trigger before_summa_payment_insert before insert
+  on payment
+  for each row
+declare
+acount_am NUMBER(8);
+
+begin
+
+select t.amount into acount_am from   account t where t.id = :new.account_from_id;
+
+ if :new.summa < 0  then
+    raise_application_error(-20900, 'Сумма перевода не может быть отрицательной!');
+    end if;
+
+ if acount_am < :new.summa  then
+    raise_application_error(-20900, 'Сумма перевода больше суммы на счете!');
+    end if;
+
+end before_summa_payment_insert;
+
+
+
+/*create or replace trigger after_summa_payment_insert after insert
+  on payment
+  for each row
+declare 
+begin
+  update account set amount = amount - :new.summa where id = :new.account_from_id;
+  update account set amount = amount + :new.summa where id = :new.account_to_id;  
+
+end after_summa_payment_insert;*/
